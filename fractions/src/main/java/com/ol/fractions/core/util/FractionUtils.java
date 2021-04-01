@@ -23,13 +23,6 @@ public class FractionUtils {
 			throw new FractionException("Numerator cannot be 0:" + fraction.toString());
 		}
 		
-		if(!fraction.hasFraction() && !fraction.hasWholeNumber()) {
-			throw new FractionException("Zero is not supported as fraction");
-		}
-		
-		if(fraction.getDenominator()<0 || fraction.getNumerator()<0 || fraction.getWholeNumber()<0) {
-			throw new FractionException("No negative values soported as inputs."+fraction.toString());
-		}
 	}
 	
 	/**

@@ -6,6 +6,11 @@ import java.util.logging.Logger;
 
 import com.ol.fractions.core.FractionOperationManager;
 
+/**
+ * Main class for console application to execute fractions operations
+ * @author OBarenque
+ *
+ */
 public class Main {
 	
 	private final static Logger LOGGER = Logger.getLogger(Main.class.getName());

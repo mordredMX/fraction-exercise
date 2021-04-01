@@ -5,9 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ol.fractions.core.Fraction;
-import com.ol.fractions.core.FractionOperationManager;
-import com.ol.fractions.core.Operator;
 
 
 public class FractionOperationManagerTest {
@@ -33,9 +30,9 @@ public class FractionOperationManagerTest {
 	public void testExecuteOperation2() {
 		Fraction term1=new Fraction(1,1,2);
 		Fraction term2=new Fraction(1,1,4);
-		Fraction result=operationManager.executeOperation(term1, term2, Operator.ADD);
-		Assert.assertEquals(result.getWholeNumber(), 2);
-		Assert.assertEquals(result.getNumerator(), 3);
+		Fraction result=operationManager.executeOperation(term1, term2, Operator.SUBSTRACT);
+		Assert.assertEquals(result.getWholeNumber(), 0);
+		Assert.assertEquals(result.getNumerator(), 1);
 		Assert.assertEquals(result.getDenominator(), 4);
 	}
 	
@@ -43,7 +40,10 @@ public class FractionOperationManagerTest {
 	public void testExecuteOperation3() {
 		Fraction term1=new Fraction(0,3,7);
 		Fraction term2=new Fraction(0,6,5);
-		Fraction result=operationManager.executeOperation(term1, term2, Operator.ADD);
+		Fraction result=operationManager.executeOperation(term1, term2, Operator.DIVIDE);
+		Assert.assertEquals(result.getWholeNumber(), 0);
+		Assert.assertEquals(result.getNumerator(), 5);
+		Assert.assertEquals(result.getDenominator(), 14);
 	}
 	
 	@Test
@@ -51,5 +51,8 @@ public class FractionOperationManagerTest {
 		Fraction term1=new Fraction(0,2,3);
 		Fraction term2=new Fraction(0,5,6);
 		Fraction result=operationManager.executeOperation(term1, term2, Operator.MULTIPLY);
+		Assert.assertEquals(result.getWholeNumber(), 0);
+		Assert.assertEquals(result.getNumerator(), 5);
+		Assert.assertEquals(result.getDenominator(), 9);
 	}
 }

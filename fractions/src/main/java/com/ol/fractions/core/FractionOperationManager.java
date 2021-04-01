@@ -1,5 +1,7 @@
 package com.ol.fractions.core;
 
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,14 +13,12 @@ public class FractionOperationManager {
 	private final static Logger LOGGER = Logger.getLogger(FractionOperationManager.class.getName());
 
 	public Operator validateAndGetOperator(final String str) {
-
-		for (Operator o : Operator.values()) {
-			if (o.getOperatorString().equals(str)) {
-				if(LOGGER.isLoggable(Level.FINE)){
-					LOGGER.log(Level.FINE, "validating operator: {0} ",o.name() );
-				}
-				return o;
+		Optional<Operator> result=Arrays.stream(Operator.values()).filter(o->o.getOperatorString().equals(str)).findAny();
+		if(result.isPresent()) {
+			if(LOGGER.isLoggable(Level.FINE)){
+				LOGGER.log(Level.FINE, "validating operator: {0} ",result.get().name() );
 			}
+			return result.get();
 		}
 		throw new IllegalArgumentException("Not valid operator: " + str);
 	}
