@@ -34,7 +34,7 @@ public class Main {
 				try {
 					inputHandler.handleFractionString(str);
 				} catch (Exception e) {
-					System.err.println(String.format("Error while procesing operation",e.getMessage()));
+					System.err.printf("Error while processing operation %s",e.getMessage());
 					LOGGER.log(Level.SEVERE, String.format("Error while processing: %s",str), e);
 				}
 			}

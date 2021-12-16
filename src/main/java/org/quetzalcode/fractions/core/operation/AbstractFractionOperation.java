@@ -17,7 +17,7 @@ public abstract class AbstractFractionOperation implements FractionOperation {
 
 	private final static Logger LOGGER = Logger.getLogger(AbstractFractionOperation.class.getName());
 
-	private Operator operator;
+	private final Operator operator;
 
 	public AbstractFractionOperation(final Operator operator) {
 		this.operator = operator;

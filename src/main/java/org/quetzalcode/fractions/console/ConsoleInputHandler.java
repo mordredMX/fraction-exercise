@@ -17,33 +17,33 @@ import org.quetzalcode.fractions.core.Operator;
 public class ConsoleInputHandler {
 	private final static Logger LOGGER = Logger.getLogger(ConsoleInputHandler.class.getName());
 
-	private FractionOperationManager manager;
+	private final FractionOperationManager manager;
 
 	final static Pattern EXPRESSION_REGEX = Pattern.compile("^\\s*(.+)\\s+(-|\\*|\\/|\\+)\\s+(.+)\\s*$");
 	
 	final static Pattern FRACTION_TERM_REGEX = Pattern.compile("^(-)?(?:(\\d*)_)?(\\d+)\\/(\\d+)$");
 	
-	final static Pattern WHOLENUMBER_TERM_REGEX = Pattern.compile("^(-)?(\\d+)$");
+	final static Pattern WHOLE_NUMBER_TERM_REGEX = Pattern.compile("^(-)?(\\d+)$");
 	
 	public ConsoleInputHandler(final FractionOperationManager manager) {
 		this.manager = manager;
 	}
 	
 	/**
-	 * convert term  to fraction
-	 * @param term
-	 * @return
+	 * convert term  to fraction.
+	 * @param term term in string
+	 * @return Fraction
 	 */
 	private Fraction createFractionFromString(final String term) {
-		final Matcher fmatcher = FRACTION_TERM_REGEX.matcher(term);
-		if (fmatcher.matches()) {
-			return new Fraction(fmatcher.group(2) == null ? 0 : Long.valueOf(fmatcher.group(2)),
-					fmatcher.group(3) == null ? 0 : Long.valueOf(fmatcher.group(3)),
-							fmatcher.group(4) == null ? 0 : Long.valueOf(fmatcher.group(4)),fmatcher.group(1)!=null);
+		final Matcher fMatcher = FRACTION_TERM_REGEX.matcher(term);
+		if (fMatcher.matches()) {
+			return new Fraction(fMatcher.group(2) == null ? 0 : Long.parseLong(fMatcher.group(2)),
+					fMatcher.group(3) == null ? 0 : Long.parseLong(fMatcher.group(3)),
+							fMatcher.group(4) == null ? 0 : Long.parseLong(fMatcher.group(4)),fMatcher.group(1)!=null);
 		}
-		final Matcher wmatcher=WHOLENUMBER_TERM_REGEX.matcher(term);
-		if (wmatcher.matches()) {
-			return new Fraction(Long.valueOf(wmatcher.group(2)), 0, 0,wmatcher.group(1)!=null);
+		final Matcher wMatcher= WHOLE_NUMBER_TERM_REGEX.matcher(term);
+		if (wMatcher.matches()) {
+			return new Fraction(Long.parseLong(wMatcher.group(2)), 0, 0,wMatcher.group(1)!=null);
 		}
 		throw new IllegalArgumentException("Term doesn't match expected format: "+term);
 		
